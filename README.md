@@ -16,7 +16,7 @@ Vizyonumuz:
 Bu iki versiyon, profesyonel bir platforma dönüşme yolculuğumuzun ilk adımlarıdır. Amacım, teknik ve tasarımsal detayları bu vizyona inanan paydaşlarla birlikte hayata geçirip kalıcı bir topluluk platformu inşa etmektir.
 
 İletişim & Katkı:
-Bu sadece bir kod yığını değil, ortak Sığınağımız. Deneyimlerini paylaşmak veya projeye katkıda bulunmak istersen LinkedIn üzerinden bana ulaşabilirsin.
+Bu sadece bir kod yığını değil, ortak Sığınağımız. Deneyimlerini paylaşmak veya projeye katkıda bulunmak istersen LinkedIn ve e-posta üzerinden bana ulaşabilirsin.
 
 Not: Yapay zeka ile birlikte geliştirdik.
 
