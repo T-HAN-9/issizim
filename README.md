@@ -20,3 +20,4 @@ Farklı versiyonlar denedim v.1 https://issizim.rf.gd/
 
 Sığınak hala yapım aşamasında. Deneyimlerini paylaşmak, katkıda bulunmak veya bu sığınağı büyütmek istersen LinkedIn Profilim  üzerinden bana ulaşabilirsin. https://www.linkedin.com/in/thanozbek/
 e-posta: tunahan.1776@outlook.com   
+Not: Yapay zeka ile birlikte geliştirdik.
