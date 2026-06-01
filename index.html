@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>İŞSİZİM - Sansürsüz Sığınak</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <h1 id="merkezi-baslik">İŞSİZİM</h1>
+        <p id="merkezi-alt-baslik">Sistemi Yola Getir</p>
+    </header>
+
+    <main class="main-container">
+
+        <section id="ekran-dashboard" class="proje-ekran">
+            
+            <div class="manifesto-kutusu">
+                <h3>Burası Sansürsüz Sığınak ✊</h3>
+                <p>İŞSİZİM; mülakat simülasyonlarından, ucu bucağı gelmeyen testlerden ve kurumsal yalanlardan yorulanların ortak sesidir. Yalnız olmadığını hissetmen için buradayız.</p>
+            </div>
+
+            <div class="konu-yazma-karti">
+    <div class="kisa-profil-ozet">
+    <p>Aktif Rütben: <b id="rutbe-dashboard">Yükleniyor...</b></p>
+</div>
+    <h3>İçindeki Ateşi Kus 🔥</h3>
+    <form id="konu-formu"> <select id="kategori-secim" required>
+            <option value="zaman">Zaman Hırsızlığı</option>
+            <option value="itaat">İtaat Testi</option>
+            <option value="mulakat">Mülakat Rezilliği</option>
+            <option value="vaat">Vaat vs. Gerçek</option>
+            <option value="ekmek">Ekmekle Oynama</option>
+            <option value="hak">Hakkını Verenler</option>
+            <option value="insan">İnsan Odaklılar</option>
+        </select>
+        <textarea id="konu-icerik" placeholder="Şirket ismi vermeden süreci sansürsüzce haykır şef..." required></textarea>
+        
+        <button type="button" onclick="konuGonder()" class="ana-yaz-btn">Haksızlığı Bildir 📣</button>
+    </form>
+</div>
+
+            <div class="sayac-listesi">
+                <div class="sayac-kart">
+                    <span>Zaman Hırsızlığı</span>
+                    <b id="sayac-zaman">0</b>
+                </div>
+                <div class="sayac-kart">
+                    <span>İtaat Testi</span>
+                    <b id="sayac-itaat">0</b>
+                </div>
+                <div class="sayac-kart">
+                    <span>Mülakat Rezilliği</span>
+                    <b id="sayac-mulakat">0</b>
+                </div>
+                <div class="sayac-kart">
+                    <span>Vaat vs. Gerçek</span>
+                    <b id="sayac-vaat">0</b>
+                </div>
+                <div class="sayac-kart">
+                    <span>Ekmekle Oynama</span>
+                    <b id="sayac-ekmek">0</b>
+                </div>
+            </div>
+
+        </section> <section id="ekran-profil" class="proje-ekran" style="display: none;">
+            
+            <div class="profil-karti">
+                <h3>Anonim Kimliğin 👤</h3>
+                <div class="rumuz-alanı">
+    <input type="text" id="profil-rumuz-input" placeholder="Sığınak için rumuz seç şef..." maxlength="15">
+    <button onclick="rumuzKaydet()" class="profil-btn">Kaydet</button>
+</div>
+                <p class="rumuz-ipucu">Rumuz seçmeden ana sayfada konu açamazsın şef.</p>
+            </div>
+
+            <div class="profil-karti">
+                <div class="rutbe-ust-bilgi">
+                    <span class="rutbe-etiket">Mevcut Rütben:</span>
+                    <span id="profil-rutbe-adi" class="rutbe-adi">Gözlemci</span>
+                </div>
+                
+                <div class="seviye-bar-dis">
+                    <div id="profil-seviye-bar-ic" class="seviye-bar-ic" style="width: 15%;"></div>
+                </div>
+                
+                <div class="rutbe-alt-bilgi">
+                    <span id="profil-toplam-puan">Mevcut Puan: 0 XP</span>
+                    <span id="profil-kalan-puan">Sonraki Rütbeye: 100 Puan</span>
+                </div>
+            </div>
+
+            <div class="sayac-listesi">
+                <div class="sayac-kart">
+                    <span>Açtığın Toplam Konu</span>
+                    <b id="profil-sayac-konu">0</b>
+                </div>
+                <div class="sayac-kart">
+                    <span>Yaptığın Toplam Yorum</span>
+                    <b id="profil-sayac-yorum">0</b>
+                </div>
+            </div>
+
+        </section>
+<!-- EKRAN 3: KONULAR AKIŞI (YENİ) -->
+        <section id="ekran-konular" class="proje-ekran" style="display: none;">
+    <div class="kisa-profil-ozet">
+        <p>İsyan Rütben: <b id="rutbe-konular">Yükleniyor...</b></p>
+    </div>
+            <!-- Üst Kategori Filtreleme Butonları -->
+            <div class="kategori-filtreler">
+    <button class="filtre-btn active" onclick="filtreUygula('tumu', this)">Tümü</button>
+    <button class="filtre-btn" onclick="filtreUygula('zaman', this)">Zaman</button>
+    <button class="filtre-btn" onclick="filtreUygula('itaat', this)">İtaat</button>
+    <button class="filtre-btn" onclick="filtreUygula('mulakat', this)">Mülakat</button>
+    <button class="filtre-btn" onclick="filtreUygula('vaat', this)">Vaat</button>
+    <button class="filtre-btn" onclick="filtreUygula('ekmek', this)">Ekmek</button>
+</div>
+
+            <!-- Konular Akış Listesi -->
+            <div id="konular-akisi">
+                
+                <!-- ÖRNEK BİR KONU KARTU (Tasarımı Görmen İçin) -->
+                <div class="konu-karti">
+                    
+                
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+   <nav class="bottom-nav">
+        <button onclick="ekranDegistir('dashboard')" id="nav-dashboard" class="nav-item active">Ana Sayfa</button>
+        <button onclick="ekranDegistir('konular')" id="nav-konular" class="nav-item">Konular</button>
+        <button onclick="ekranDegistir('profil')" id="nav-profil" class="nav-item">Profilim</button>
+    </nav>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,571 @@
+/* SIFIRLAMA VE TEMEL AYARLAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Alt barı her zaman en önde tutar ve içeriğin onun arkasına kaçmasını engeller */
+body {
+    padding-bottom: 80px; 
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+/* ÜST BAŞLIK TASARIMI */
+.site-header {
+    text-align: center;
+    padding: 20px 15px;
+    background: #050505;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.site-header h1 {
+    color: #ffcc00;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.site-header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* MERKEZİ İÇERİK KUTUSU */
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* SABİT ALT MENÜ (DÜZELTİLMİŞ HALİ) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    
+    /* İÇERİKLE AYNI HİZAYA GETİRDİK */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px; 
+    
+    height: 65px;
+    background-color: #000;
+    border-top: 2px solid #ffcc00;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -2px 10px rgba(255, 204, 0, 0.1);
+}
+.nav-item {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 0.85rem; /* Biraz küçülttük ki sığsın */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-item.active {
+    color: #ffcc00; /* Aktif olanı sarı parlat */
+}
+/* ==========================================
+   BLOK 2: ANA SAYFA İÇERİK STİLLERİ
+   ========================================== */
+
+/* MANİFESTO / AÇIKLAMA KUTUSU */
+.manifesto-kutusu {
+    background: #0d0d0d;
+    border: 1px dashed #ffcc00;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.manifesto-kutusu h3 {
+    color: #ffcc00;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+}
+
+.manifesto-kutusu p {
+    color: #bbb;
+    font-size: 0.95rem;
+}
+
+/* KONU AÇMA KUTUSU */
+.konu-yazma-karti {
+    background: #111111;
+    border: 1px solid #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.konu-yazma-karti h3 {
+    color: #ffcc00;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+/* SEÇİM KUTUSU */
+.konu-yazma-karti select {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #222222;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+/* METİN ALANI */
+.konu-yazma-karti textarea {
+    width: 100%;
+    height: 100px;
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #222222;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    resize: none;
+    outline: none;
+}
+
+/* ODAKLANMA DURUMUNDA SARI PARLAMA */
+.konu-yazma-karti textarea:focus, 
+.konu-yazma-karti select:focus {
+    border-color: #ffcc00;
+}
+.konu-metni-kisitli {
+    max-height: 120px !important;
+    overflow: hidden !important;
+}
+
+/* HAKSIZLIĞI BİLDİR BUTONU */
+.ana-yaz-btn {
+    width: 100%;
+    background: #ffcc00;
+    color: #000000;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ana-yaz-btn:hover {
+    background: #e6b800;
+}
+
+/* SAYAÇ KARTLARI */
+.sayac-listesi {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sayac-kart {
+    background: #0a0a0a;
+    border-left: 4px solid #ffcc00; /* Sol sarı şerit */
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.sayac-kart span {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.sayac-kart b {
+    font-size: 1.3rem;
+    color: #ffcc00;
+}
+/* ==========================================
+   BLOK 3: PROFİLİM SAYFASI STİLLERİ
+   ========================================== */
+
+.profil-karti {
+    background: #111111;
+    border: 1px solid #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.profil-karti h3 {
+    color: #ffcc00;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* RUMUZ SEÇİM ALANI */
+.rumuz-alanı {
+    display: flex;
+    gap: 10px;
+}
+
+#profil-rumuz-input {
+    flex: 1;
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #222222;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+#profil-rumuz-input:focus {
+    border-color: #ffcc00;
+}
+
+.profil-btn {
+    background: #ffcc00;
+    color: #000000;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.profil-btn:hover {
+    background: #e6b800;
+}
+
+.rumuz-ipucu {
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 8px;
+}
+
+/* RÜTBE VE İLERLEME ÇUBUĞU (PROGRESS BAR) */
+.rutbe-ust-bilgi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.rutbe-etiket {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.rutbe-adi {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Çubuğun Dış Siyah Yuvası */
+.seviye-bar-dis {
+    width: 100%;
+    height: 12px;
+    background: #000000;
+    border: 1px solid #222222;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+/* Çubuğun Dolan Sarı Kısmı */
+.seviye-bar-ic {
+    height: 100%;
+    background: linear-gradient(90deg, #ffcc00, #ffaa00);
+    border-radius: 10px;
+    transition: width 0.4s ease; /* Dolarken tatlı bir kayma efekti */
+}
+
+.rutbe-alt-bilgi {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.85rem;
+}
+/* ==========================================
+   BLOK 4: KONULAR VE YORUMLAR AKIŞ STİLLERİ
+   ========================================== */
+
+/* KATEGORİ FİLTRELEME BARBARI */
+.kategori-filtreler {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Mobilde parmakla sağa sola kaysın */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    /* 🔥 SCROLLBAR GİZLEME SİHRİ */
+    -ms-overflow-style: none;  /* IE ve Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.kategori-filtreler::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.filtre-btn {
+    background: #0d0d0d;
+    color: #888;
+    border: 1px solid #222;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap; /* Yazılar alt alta kırılmasın */
+}
+
+.filtre-btn.active, .filtre-btn:hover {
+    background: #ffcc00;
+    color: #000;
+    border-color: #ffcc00;
+    font-weight: bold;
+}
+
+/* KONU KARTLARI */
+.konu-karti {
+    max-width: 100%;
+    overflow: hidden; /* Taşmayı engeller */
+    background: #0a0a0a;
+    border-left: 4px solid #ffcc00;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.konu-ust-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Eğer sığmazsa alt satıra geçmesini sağlar */
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.konu-yazar {
+    color: #aaa;
+    font-weight: bold;
+}
+
+.konu-yazar small {
+    color: #666;
+    font-weight: normal;
+}
+
+.konu-badge {
+    margin-left: auto; /* Bu özellik, sağa itecek olan sihirli değnektir */
+    background: #ff4d4d;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    white-space: nowrap;
+}
+
+/* 🌟 SAĞA SOLA TAŞMAYI ENGELLEYEN METİN ALANI 🌟 */
+.konu-metni {
+    font-size: 0.95rem;
+    color: #eee;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    word-break: break-word;     /* Uzun kelimeleri otomatik böler */
+    overflow-wrap: break-word;  /* Ekrandan taşmayı imkansız kılar */
+}
+/* UZUN METİN KORUMASI */
+.konu-metni-kisitli {
+    max-height: 150px !important; /* Yükseklik sınırını kesinleştirdik */
+    overflow: hidden !important;
+    position: relative;
+    display: block;
+    
+}
+/* Konu metinlerinin olduğu yerdeki scrollbarı sarı-siyah yap */
+.konu-metni::-webkit-scrollbar {
+    width: 6px; /* İnce ve zarif */
+}
+
+.konu-metni::-webkit-scrollbar-track {
+    background: #000; /* Siyah zemin */
+}
+
+.konu-metni::-webkit-scrollbar-thumb {
+    background: #ffcc00; /* Sarı çubuk */
+    border-radius: 10px; /* Kenarları yuvarlak */
+}
+
+.konu-metni::-webkit-scrollbar-thumb:hover {
+    background: #e6b800; /* Üzerine gelince biraz daha koyu sarı */
+}
+
+
+.devamını-gor-btn {
+    background: none;
+    border: none;
+    color: #ffcc00;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.konu-alt-bar {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid #111;
+    padding-top: 10px;
+}
+
+.etkilesim-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.etkilesim-btn:hover, .alev-btn {
+    color: #ffcc00;
+}
+
+/* YORUMLAR BÖLÜMÜ (MAKSİMUM 5 YORUM YÜKSEKLİĞİ) */
+.yorumlar-alani {
+    background: #050505;
+    border: 1px solid #111;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding: 10px;
+}
+
+.yorumlar-listesi {
+    max-height: 160px; /* Yaklaşık 5 yorum boyutu, sonrası kayacak */
+    overflow-y: auto;   /* Yukarı aşağı kaymayı açar */
+    margin-bottom: 10px;
+    /* 🔥 SCROLLBAR GİZLEME SİHRİ */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.yorumlar-listesi::-webkit-scrollbar {
+    display: none;
+}
+
+.tek-yorum {
+    font-size: 0.85rem;
+    color: #bbb;
+    padding: 6px 0;
+    border-bottom: 1px solid #111;
+    word-break: break-word; /* Yorum metinlerini de korumaya aldık */
+}
+
+.tek-yorum b {
+    color: #ffcc00;
+}
+
+/* Yorum Yazma Alanı */
+.yorum-yazma-formu {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.yorum-yazma-formu input {
+    flex: 1;
+    background: #000;
+    color: #fff;
+    border: 1px solid #222;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.yorum-yazma-formu input:focus {
+    border-color: #ffcc00;
+}
+
+.yorum-yazma-formu button {
+    background: #222;
+    color: #ffcc00;
+    border: none;
+    padding: 0 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+/* Konu yazma textarea'sı için scrollbar */
+#konu-icerik::-webkit-scrollbar {
+    width: 8px; /* Biraz daha geniş olsun ki yazarken rahat olsun */
+}
+
+#konu-icerik::-webkit-scrollbar-track {
+    background: #000;
+}
+
+#konu-icerik::-webkit-scrollbar-thumb {
+    background: #ffcc00;
+    border-radius: 10px;
+    border: 2px solid #000; /* Çubukla arka plan arasında küçük bir boşluk hissi verir */
+}
+
+#konu-icerik::-webkit-scrollbar-thumb:hover {
+    background: #e6b800;
+}
+.sil-btn {
+    background: transparent;
+    border: none;
+    color: #ff4d4d; /* Kırmızı uyarı rengi */
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto; /* Sağ tarafa yasla */
+}
+.sil-btn:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+.kisa-profil-ozet {
+    background: #1a1a1a;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ff4d4d;
+    color: #fff;
+    font-size: 0.9em;
+}
+
+#kisa-rutbe-adi {
+    color: #ff4d4d; /* Sığınak temasına uygun kırmızı */
+}
+.rutbe-badge {
+    background: #333;
+    color: #ffd700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    border: 1px solid #555;
+    /* Margin'e gerek yok, gap bunu halleder */
+}
