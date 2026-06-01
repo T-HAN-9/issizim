@@ -19,8 +19,9 @@ Bu iki versiyon, profesyonel bir platforma dönüşme yolculuğumuzun ilk adıml
 Bu sadece bir kod yığını değil, ortak Sığınağımız. Deneyimlerini paylaşmak veya projeye katkıda bulunmak istersen LinkedIn üzerinden bana ulaşabilirsin.
 
 Not: Yapay zeka ile birlikte geliştirdik.
-Farklı versiyonlar denedim v.1 https://issizim.rf.gd/
-                           v.2 https://t-han-9.github.io/issizim/
+
+v.1 https://issizim.rf.gd/
+v.2 https://t-han-9.github.io/issizim/
 
 https://www.linkedin.com/in/thanozbek/
 e-posta: tunahan.1776@outlook.com
