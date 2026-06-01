@@ -15,3 +15,6 @@ Mülakat Rezilliği: Şirketlerin adaylara yaşattığı o akıl almaz süreçle
 XP ve Rütbe: Burada her paylaşım bir değer taşır, her kullanıcı kendi rütbesini dürüstlüğüyle kazanır.
 
 "Biz bir şeyleri değiştirmeye geldik. Eğer sen de iş dünyasının o sahte şovundan yorulduysan, aramıza katıl. Bu sadece bir kod yığını değil, hepimizin ortak Sığınağı."
+
+Sığınak hala yapım aşamasında. Deneyimlerini paylaşmak, katkıda bulunmak veya bu sığınağı büyütmek istersen LinkedIn Profilim  üzerinden bana ulaşabilirsin. https://www.linkedin.com/in/thanozbek/
+e-posta: tunahan.1776@outlook.com   
