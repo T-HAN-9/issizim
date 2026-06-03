@@ -1,3 +1,51 @@
+#hazirlaniyor-ekrani {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.terminal-kutusu {
+    font-family: 'Courier New', Courier, monospace;
+    color: #ffcc00;
+}
+
+.yukleme-cubugu {
+    width: 200px; height: 4px;
+    background: #333;
+    margin: 20px auto;
+    border-radius: 2px;
+    overflow: hidden;
+}
+.giris-butonu {
+    background: transparent;
+    border: 1px solid #ffcc00;
+    color: #ffcc00;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.giris-butonu:hover {
+    background: #ffcc00;
+    color: #000;
+}
+
+/* Basit bir yükleme animasyonu */
+.yukleme-cubugu::after {
+    content: '';
+    display: block;
+    width: 30%; height: 100%;
+    background: #ffcc00;
+    animation: yukle 2s infinite linear;
+}
 /* SIFIRLAMA VE TEMEL AYARLAR */
 * {
     margin: 0;
@@ -5,76 +53,120 @@
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-
-/* Alt barı her zaman en önde tutar ve içeriğin onun arkasına kaçmasını engeller */
-body {
-    padding-bottom: 80px; 
-    margin: 0;
+/* Sığınağın temelini düzeltiyoruz */
+body, html {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
     background-color: #000;
     color: #fff;
     font-family: sans-serif;
 }
 
+/* Her ekran bu kurallarla ortalanacak */
+.proje-ekran {
+    display: none;
+    width: 100%;
+    min-height: calc(100vh - 120px); /* Üst ve alt menü payını düş, gerisini esnek bırak */
+    padding: 15px 15px 80px 15px; /* Alttan nav barın altında kalmamak için boşluk */
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-start; /* İçerikler yukarıdan aşağıya doğal aksın */
+    align-items: stretch; /* Kartlar sağa-sola tam yayılsın */
+}
+/* Aktif olan ekranı görünür yap */
+.proje-ekran.active {
+    display: flex; /* Sadece aktif olanı flex olarak aç */
+}
+/* Sığınağın Sınırları - Burası senin 'Mobil App' görünümünü koruyacak olan yer */
+.main-container {
+    max-width: 480px;      /* 480 pikseli geçme, mobil app gibi kal */
+    width: 100%;           /* Mobilde ekranı tam kapla */
+    margin: 0 auto;        /* Masaüstünde ortaya sabitle */
+    min-height: 100vh;     /* En az ekran boyunda ol */
+    background: #000;      /* Arka plan siyah kalsın */
+    display: flex;         /* İçerikleri düzenli tut */
+    flex-direction: column;
+    position: relative;    /* İçi kaydırmalı bir yapı için */
+}
 /* ÜST BAŞLIK TASARIMI */
 .site-header {
     text-align: center;
     padding: 20px 15px;
     background: #050505;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #222; /* Hafif derinlik */
 }
 
 .site-header h1 {
     color: #ffcc00;
-    font-size: 1.8rem;
-    letter-spacing: 1px;
+    font-size: 2rem; /* Biraz daha baskın */
+    letter-spacing: 4px; /* Harfleri biraz ayırdık */
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.3); /* Hafif bir neon parlaması */
+    margin: 0;
 }
 
 .site-header p {
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 5px;
-}
-
-/* MERKEZİ İÇERİK KUTUSU */
-.main-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding-bottom: 80px;
+    color: #888; 
+    font-size: 0.85rem;
+    margin-top: 8px;
+    
+    /* Terminal Fontu & Dijital Hava */
+    font-family: 'Courier New', Courier, monospace; 
+    letter-spacing: 2px;
+    text-transform: uppercase; 
+    opacity: 0.8;
 }
 
 /* SABİT ALT MENÜ (DÜZELTİLMİŞ HALİ) */
+/* 1. NAVİGASYONU DİBE ÇİVİLE */
 .bottom-nav {
     position: fixed;
     bottom: 0;
-    
-    /* İÇERİKLE AYNI HİZAYA GETİRDİK */
+    width: 100%;
+    max-width: 480px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    max-width: 600px; 
+    background: #000;
+    z-index: 1000;    /* Yazıların/görsellerin üzerinde kalsın */
     
-    height: 65px;
-    background-color: #000;
-    border-top: 2px solid #ffcc00;
-    display: flex;
+    /* Geri kalan tasarımlar (Aynı kalsın) */
+    display: flex !important;
     justify-content: space-around;
     align-items: center;
-    z-index: 9999;
-    box-shadow: 0 -2px 10px rgba(255, 204, 0, 0.1);
-}
-.nav-item {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #555;
-    font-size: 0.85rem; /* Biraz küçülttük ki sığsın */
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s;
+    background-color: #000;
+    height: 60px;
+    border-top: 1px solid #333; /* Hafif bir sınır çizgisi */
 }
 
+/* 2. İÇERİĞİ NAVİGASYONUN ALTINDA KALMAKTAN KURTAR */
+/* Sitenin genelini saran kapsayıcıya (veya body'ye) alt boşluk veriyoruz */
+
+/* 2. Butonları Eşitle */
+.nav-item {
+    flex: 1;                            /* Her buton eşit yer kaplasın */
+    text-align: center;
+    background: none;
+    border: none;
+    color: #888;                        /* Pasif renk */
+    font-size: 0.9rem;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;                      /* İçerik hizalaması için */
+    flex-direction: column;             /* İkon varsa üstte kalsın diye */
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3. Aktif Buton (Sarı Çizgi Sorununu Çözdük) */
 .nav-item.active {
-    color: #ffcc00; /* Aktif olanı sarı parlat */
+    color: #ffcc00 !important;
+    border-top: 2px solid #ffcc00 !important; /* Sarı çizgi artık sabit */
+    margin-top: -2px;                   /* Çizgiyi telafi etmek için hafif kaydır */
+}
+
+/* 4. Dokunma Efekti (Maviliği yok ettik) */
+.nav-item:active {
+    background-color: rgba(255, 204, 0, 0.05) !important;
 }
 /* ==========================================
    BLOK 2: ANA SAYFA İÇERİK STİLLERİ
@@ -174,21 +266,24 @@ body {
 }
 
 /* SAYAÇ KARTLARI */
+/* Ana Liste Taşıyıcısı */
 .sayac-listesi {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px; /* Kartlar arası boşluk */
+    padding: 10px;
 }
 
+/* Her Bir Kategori Kartı */
 .sayac-kart {
-    background: #0a0a0a;
-    border-left: 4px solid #ffcc00; /* Sol sarı şerit */
-    padding: 15px;
-    border-radius: 6px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    justify-content: space-between; /* Yazıları sola, sayacı sağa yaslar */
+    align-items: center; /* Dikeyde ortalar */
+    background-color: #121212; /* Sığınak'ın karanlık teması */
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #ffcc00; /* Sitenin sarı vurgusuna uygun sol çizgi */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .sayac-kart span {
@@ -196,9 +291,11 @@ body {
     color: #ccc;
 }
 
+/* Sayaç Rakamları */
 .sayac-kart b {
-    font-size: 1.3rem;
-    color: #ffcc00;
+    font-size: 18px;
+    color: #ffcc00; /* Sitenin sarı tonu */
+    font-weight: bold;
 }
 /* ==========================================
    BLOK 3: PROFİLİM SAYFASI STİLLERİ
@@ -315,7 +412,7 @@ body {
 /* KATEGORİ FİLTRELEME BARBARI */
 .kategori-filtreler {
     display: flex;
-    gap: 8px;
+    gap: 5px;
     overflow-x: auto; /* Mobilde parmakla sağa sola kaysın */
     padding-bottom: 15px;
     margin-bottom: 15px;
@@ -336,6 +433,27 @@ body {
     font-size: 0.85rem;
     cursor: pointer;
     white-space: nowrap; /* Yazılar alt alta kırılmasın */
+}
+/* Başlık ve Açıklamayı Tutan Kutu */
+.kategori-bilgi {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Başlık ve açıklama arası minik boşluk */
+    max-width: 85%; /* Uzun yazıların sayacı ittirmesini engeller */
+}
+
+/* Ana Kategori Başlığı */
+.kategori-baslik {
+    font-weight: bold;
+    font-size: 16px;
+    color: #e0e0e0;
+}
+
+/* Alt Açıklama Metni */
+.kategori-aciklama {
+    font-size: 12px;
+    color: #888888; /* Silik gri ile hiyerarşi oluşturuldu */
+    line-height: 1.4;
 }
 
 .filtre-btn.active, .filtre-btn:hover {
@@ -383,40 +501,82 @@ body {
     font-size: 0.75em;
     white-space: nowrap;
 }
-
-/* 🌟 SAĞA SOLA TAŞMAYI ENGELLEYEN METİN ALANI 🌟 */
-.konu-metni {
-    font-size: 0.95rem;
-    color: #eee;
-    line-height: 1.5;
-    margin-bottom: 12px;
-    word-break: break-word;     /* Uzun kelimeleri otomatik böler */
-    overflow-wrap: break-word;  /* Ekrandan taşmayı imkansız kılar */
+/* Konu başlığındaki tarih (Sağda soluk durur) */
+.konu-tarih {
+    font-size: 0.75em;
+    color: #888; /* Silik gri */
+    font-style: italic;
+    margin-left: 5px;
 }
-/* UZUN METİN KORUMASI */
-.konu-metni-kisitli {
+
+/* Yorumlardaki saat damgası */
+.yorum-tarih {
+    font-size: 0.8em;
+    color: #666; /* Daha koyu gri */
+    margin-right: 5px;
+    font-family: monospace; /* Saatlerde daha dijital ve hizalı durur */
+}
+
+/* Artık nokta (.) yerine diyez (#) kullanıyoruz */
+#konu-icerik {
+    /* Yazıyı zorla görünür kıl */
+    color: #dfdfdf !important;             /* Parlak kırmızı (Test için) */
+    background-color: #000000 !important; /* Simsiyah zemin */
+    
+    /* Boyutları sabitle */
+    display: block !important;
+    width: 100% !important;
+    height: 150px !important;
+    ;
+    
+    /* Görüntü ayarları */
+    opacity: 1 !important;                /* Şeffaflığı sıfırla */
+    visibility: visible !important;       /* Görünürlüğü aç */
+    text-shadow: none !important;         /* Gölge varsa kaldır */
+    
+    /* Font ayarları */
+    font-size: 16px !important;
+    font-family: sans-serif !important;
+}
+
+/* Gönderilerin içindeki tüm metinleri zorla beyaz yap */
+.konu-icerik, 
+.konu-icerik p, 
+.konu-icerik span, 
+.konu-icerik div {
+    color: #ffffff !important;     /* Saf beyaz */
+    opacity: 1 !important;        /* Görünürlüğü %100 yap */
+    text-shadow: 0 0 1px #fff !important; /* Hafif bir parıltı ekle (görünürlüğü garantile) */
+    -webkit-text-fill-color: #ffffff !important; /* Tarayıcı renk hilelerini engelle */
+}
+   
+
+
+/* UZUN METİN KORUMASI (GÜVENLİ VE UYUMLU SÜRÜM) */
+.konu-metni-kisitli, .konu-icerik-kisitli {
     max-height: 150px !important; /* Yükseklik sınırını kesinleştirdik */
-    overflow: hidden !important;
+    overflow: hidden !important;   /* 150px'ten sonrasını dışarı taşırmaz, gizler */
     position: relative;
     display: block;
-    
 }
-/* Konu metinlerinin olduğu yerdeki scrollbarı sarı-siyah yap */
-.konu-metni::-webkit-scrollbar {
-    width: 6px; /* İnce ve zarif */
-}
-
-.konu-metni::-webkit-scrollbar-track {
-    background: #000; /* Siyah zemin */
+/* Chrome, Edge ve Safari için Özel Sarı/Siyah Tasarım */
+.konu-icerik::-webkit-scrollbar {
+    width: 6px !important; /* İnce ve kibar dursun diye 6px yaptık */
+    display: block !important; /* Gizliliği kaldırıyoruz, gözüksün! */
 }
 
-.konu-metni::-webkit-scrollbar-thumb {
-    background: #ffcc00; /* Sarı çubuk */
-    border-radius: 10px; /* Kenarları yuvarlak */
+
+.konu-icerik::-webkit-scrollbar-track {
+    background: #000000 !important; /* Tam siyah zemin */
 }
 
-.konu-metni::-webkit-scrollbar-thumb:hover {
-    background: #e6b800; /* Üzerine gelince biraz daha koyu sarı */
+.konu-icerik::-webkit-scrollbar-thumb {
+    background: #ffcc00 !important; /* Şanlı sığınak sarısı */
+    border-radius: 4px !important;
+}
+
+.konu-icerik::-webkit-scrollbar-thumb:hover {
+    background: #e6b800 !important; /* Üzerine gelince biraz daha koyu sarı */
 }
 
 
@@ -568,4 +728,59 @@ body {
     font-size: 0.75em;
     border: 1px solid #555;
     /* Margin'e gerek yok, gap bunu halleder */
+}
+.siginak-duyuru-kutusu {
+    background: #161616;
+    border-left: 4px solid #ffcc00; /* Sol tarafa sarı bir uyarı şeridi */
+    border-top: 1px solid #222;
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px auto;
+    max-width: 650px;
+    box-sizing: border-box;
+}
+
+.siginak-duyuru-kutusu h3 {
+    color: #ffcc00;
+    margin-top: 0;
+    font-size: 1.05rem;
+}
+
+.siginak-duyuru-kutusu p {
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.duyuru-cizgi {
+    border: 0;
+    border-top: 1px dashed #333;
+    margin: 12px 0;
+}
+
+.duyuru-iletisim a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.duyuru-iletisim a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+input, textarea {
+    background-color: #222 !important; /* Koyu gri kutu */
+    color: #ffffff !important;         /* Beyaz yazı */
+    border: 1px solid #ffcc00 !important; /* Sarı sınır */
+    padding: 10px;
+}
+
+/* Yazı seçilince görünsün diye */
+::selection {
+    background: #ffcc00;
+    color: #000;
 }
