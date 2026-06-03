@@ -36,15 +36,6 @@ function verileriKaydet() {
     localStorage.setItem('siginak_alevler', JSON.stringify(alevAtilanlar));
 }
 
-// 1. GİRİŞ YAPMA (Sistemi Başlatma)
-function siginagaGir() {
-    const hazirlikEkrani = document.getElementById('hazirlaniyor-ekrani');
-    if (hazirlikEkrani) {
-        hazirlikEkrani.style.display = 'none'; 
-        localStorage.setItem('sistem_durumu', 'giris_yapildi');
-        ekranDegistir('dashboard'); 
-    }
-}
 
 // 2. SAYFA YÜKLENİNCE (Tüm Hafıza ve Değişken Yüklemeleri Tek Bir Çatı Altında)
 window.onload = function() {
@@ -53,7 +44,6 @@ window.onload = function() {
     const kayitliPuan = localStorage.getItem('siginak_puan');
     const kaydedilmisKonular = localStorage.getItem('siginak_konular');
     const kaydedilmisAlevler = localStorage.getItem('siginak_alevler');
-    const durum = localStorage.getItem('sistem_durumu');
     
     if (kayitliRumuz) aktifRumuz = kayitliRumuz;
     if (kayitliPuan) kullaniciPuan = parseFloat(kayitliPuan) || 0;
@@ -81,14 +71,14 @@ window.onload = function() {
         console.log("Rütbe hesaplama hatası:", e);
     }
 
-    // Giriş kontrolü ve kalınan son ekranı yükleme
-    if (durum === 'giris_yapildi') {
-        const hazirlikEkrani = document.getElementById('hazirlaniyor-ekrani');
-        if (hazirlikEkrani) hazirlikEkrani.style.display = 'none';
-        
-        const sonEkran = localStorage.getItem('son_ekran') || 'dashboard';
-        ekranDegistir(sonEkran);
-    }
+    /* ==========================================================================
+       🚀 EKRAN YÜKLEME VE SİYAH EKRAN KORUMASI
+       ========================================================================== */
+    // Hafıza sıfırlanmışsa veya ilk girişse direkt 'dashboard' (ana sayfa) yüklenecek.
+    const sonEkran = localStorage.getItem('son_ekran') || 'dashboard';
+    
+    // Sığınağın kapılarını beklemeden direkt açıyoruz
+    ekranDegistir(sonEkran);
 };
 
 // --- PUAN VE RÜTBE MOTORU ---
@@ -276,12 +266,11 @@ function konulariEkranaBas(filtre = "tumu") {
         'serbest': '#555555'     
     };
 
-    // İçerideki forEach döngüsünün hemen başındaki filtre satırını bu şekilde güncelle:
-tumKonular.forEach(konu => {
-    if (filtre !== "tumu" && konu.kategori !== filtre) return; // Böcek temizlendi!
-    
-    const renk = kategoriRenkleri[konu.kategori] || '#3498db';
+    tumKonular.forEach(konu => {
+        if (filtre !== "tumu" && konu.kategori !== filtre) return; 
         
+        const renk = kategoriRenkleri[konu.kategori] || '#3498db';
+            
         // Yorumları XSS korumalı şekilde listeleme
         let yorumlarHTML = (konu.yorumlar || []).map(y => {
             return `
@@ -307,14 +296,14 @@ tumKonular.forEach(konu => {
                     ${konu.yazar === aktifRumuz ? `<button class="sil-btn" onclick="konuSil(${konu.id})">🗑️</button>` : ''}
                 </div>
                 
-                <div id="metin-alan-${konu.id}" class="konu-icerik" style="display: block !important; max-height: 160px !important; overflow-y: auto !important; white-space: pre-wrap !important; word-break: break-all !important; overflow-wrap: anywhere !important;">${konuMetniGoster}</div>
+                <div id="metin-alan-${konu.id}" class="konu-icerik">${konuMetniGoster}</div>
                 
                 <div class="konu-alt-bar">
                     <button class="etkilesim-btn alev-btn" onclick="alevAt(${konu.id})">🔥 <span id="alev-sayi-${konu.id}">${konu.alevSayisi}</span></button>
                     <button class="etkilesim-btn" onclick="toggleYorumKutusu(${konu.id})">💬 <span id="yorum-sayac-${konu.id}">${konu.yorumlar ? konu.yorumlar.length : 0} Yorum</span></button>
                 </div>
                 
-                <div id="yorum-kutusu-${konu.id}" class="yorumlar-alani" style="display: none;">
+                <div id="yorum-kutusu-${konu.id}" class="yorumlar-alani" style="display: none !important;">
                     <div class="yorumlar-listesi" id="yorum-listesi-${konu.id}">${yorumlarHTML}</div>
                     <div class="yorum-yazma-formu">
                         <input type="text" id="yorum-input-${konu.id}" placeholder="Destek at şef..." onkeydown="if(event.key==='Enter') yorumEkle(${konu.id})">
@@ -326,7 +315,6 @@ tumKonular.forEach(konu => {
         akisKutusu.insertAdjacentHTML('beforeend', kartHTML);
     });
 }
-
 // --- ETKİLEŞİM VE SPAM FİLTRESİ ---
 function alevAt(konuId) {
     if (alevAtilanlar.includes(konuId)) { alert("Zaten alev attın şef! 🔥"); return; }
@@ -402,10 +390,16 @@ function yorumEkle(konuId) {
     }
 }
 
-function toggleYorumKutusu(konuId) {
-    const kutu = document.getElementById(`yorum-kutusu-${konuId}`);
-    if (kutu) {
-        kutu.style.display = (kutu.style.display === 'none' || kutu.style.display === '') ? 'block' : 'none';
+function toggleYorumKutusu(id) {
+    const kutu = document.getElementById(`yorum-kutusu-${id}`);
+    if (!kutu) return;
+
+    if (kutu.style.getPropertyValue('display') === 'none !important' || kutu.style.display === 'none') {
+        // Kutuyu açarken bizim CSS'teki Flex yapısını koruyarak açıyoruz
+        kutu.style.setProperty('display', 'flex', 'important');
+    } else {
+        // Kapatırken güvenli şekilde gizliyoruz
+        kutu.style.setProperty('display', 'none', 'important');
     }
 }
 
