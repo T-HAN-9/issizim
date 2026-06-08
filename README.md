@@ -21,7 +21,7 @@ Bu sadece bir kod yığını değil, ortak Sığınağımız. Deneyimlerini payl
 Not: Yapay zeka ile birlikte geliştirdik.
 
 v.1 https://issizim.rf.gd/
-v.2 https://t-han-9.github.io/issizim/
+v.2 https://t-han-9.github.io/siginak/
 
 https://www.linkedin.com/in/thanozbek/
 e-posta: tunahan.1776@outlook.com
